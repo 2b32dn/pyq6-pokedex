@@ -1,6 +1,6 @@
 ## Author
 
-Dickson Lee  
+Dickson Lee (2495196)
 
 420-9420-VA: Application Development (PyQt6) 
 
