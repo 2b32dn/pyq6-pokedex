@@ -1,9 +1,13 @@
 ## Author
 
 Dickson Lee  
+
 420-9420-VA: Application Development (PyQt6) 
+
 16 June 2025
+
 Denis Renfret
+
 Vanier College – Final Project
 
 # Pokédex Application (PyQt6 Final Project)
