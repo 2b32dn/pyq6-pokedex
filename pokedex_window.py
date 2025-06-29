@@ -135,7 +135,7 @@ class PokedexWindow(QMainWindow):
         navLayout.addWidget(self.rightBtn)
 
         self.savebtn = QPushButton("Save Info")
-        self.savebtn.clicked.connect(self.save_pokemon_info)
+        self.savebtn.clicked.connect(self.savePokemonInfo)
 
         self.evolutionBtn = QPushButton("Show Evolution Chain")
         self.evolutionBtn.clicked.connect(self.showEvolutionDialog)
@@ -148,7 +148,6 @@ class PokedexWindow(QMainWindow):
         shinyLayout.addWidget(self.evolutionBtn)
         mainLayout.addLayout(shinyLayout)
         mainLayout.addLayout(self.imageInfoLayout)
-        # mainLayout.addWidget(self.evolutionBtn)
         mainLayout.addWidget(self.tabs)
         mainLayout.addLayout(navLayout)
 
@@ -329,7 +328,7 @@ class PokedexWindow(QMainWindow):
             try:
                 typeData = requests.get(url).json()
                 for key in damageRelations.keys():
-                    for type in typeData["damageRelations"][key]:
+                    for type in typeData["damage_relations"][key]:
                         damageRelations[key].add(type["name"].capitalize())
             except:
                 continue
@@ -360,7 +359,7 @@ class PokedexWindow(QMainWindow):
         randomId = random.randint(1, 1025)
         self.searchPokemon(randomId)
 
-    def save_pokemon_info(self):
+    def savePokemonInfo(self):
         if not self.infoDisplay.toPlainText():
             QMessageBox.warning(self, "No Data", "No Pokémon info to save.")
             return

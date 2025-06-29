@@ -1,0 +1,24 @@
+Pokémon data
+National #: 9
+Types:
+  Water   
+Height: 1.6 m 
+Weight: 85.5 kg 
+Abilities
+Torrent
+Rain dish (Hidden Ability)
+Base Stats
+Hp: 79
+Attack: 83
+Defense: 100
+Special attack: 85
+Special defense: 105
+Speed: 78
+Training
+Base Experience Yield: 239
+Base Happiness: 70
+Base Experience: 239
+Capture Rate: 45
+Growth Rate: Medium slow
+Breeding
+Egg Groups: Legendary
