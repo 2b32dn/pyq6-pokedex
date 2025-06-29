@@ -1,7 +1,7 @@
 from PyQt6.QtWidgets import (
     QMainWindow, QWidget, QLabel, QLineEdit, QPushButton, QCheckBox,
     QTextEdit, QVBoxLayout, QHBoxLayout, QMessageBox, QTabWidget,
-    QDialog,QProgressBar
+    QDialog, QProgressBar,QFileDialog
 )
 from PyQt6.QtGui import QAction, QPixmap, QKeySequence
 from PyQt6.QtCore import Qt
@@ -137,9 +137,13 @@ class PokedexWindow(QMainWindow):
         self.evolutionBtn = QPushButton("Show Evolution Chain")
         self.evolutionBtn.clicked.connect(self.showEvolutionDialog)
 
+        self.savebtn = QPushButton("Save Info")
+        self.savebtn.clicked.connect(self.save_pokemon_info)
+
         mainLayout = QVBoxLayout()
         mainLayout.addLayout(topLayout)
         mainLayout.addWidget(self.shinyCheckbox)
+        mainLayout.addWidget(self.savebtn)
         mainLayout.addLayout(self.imageInfoLayout)
         mainLayout.addWidget(self.evolutionBtn)
         mainLayout.addWidget(self.tabs)
@@ -352,6 +356,20 @@ class PokedexWindow(QMainWindow):
     def loadRandomPokemon(self):
         randomId = random.randint(1, 1025)
         self.searchPokemon(randomId)
+
+    def save_pokemon_info(self):
+        if not self.infoDisplay.toPlainText():
+            QMessageBox.warning(self, "No Data", "No Pokémon info to save.")
+            return
+    
+        file_path, _ = QFileDialog.getSaveFileName(self, "Save Info", "", "Text Files (*.txt)")
+        if file_path:
+            try:
+                with open(file_path, "w") as f:
+                    f.write(self.infoDisplay.toPlainText())
+                QMessageBox.information(self, "Saved", f"Info saved to {file_path}")
+            except Exception as e:
+                QMessageBox.critical(self, "Error", f"Failed to save file.\n{e}")
 
 
 if __name__ == "__main__":
