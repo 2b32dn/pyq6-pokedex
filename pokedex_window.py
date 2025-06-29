@@ -134,18 +134,21 @@ class PokedexWindow(QMainWindow):
         navLayout.addWidget(self.leftBtn)
         navLayout.addWidget(self.rightBtn)
 
-        self.evolutionBtn = QPushButton("Show Evolution Chain")
-        self.evolutionBtn.clicked.connect(self.showEvolutionDialog)
-
         self.savebtn = QPushButton("Save Info")
         self.savebtn.clicked.connect(self.save_pokemon_info)
 
+        self.evolutionBtn = QPushButton("Show Evolution Chain")
+        self.evolutionBtn.clicked.connect(self.showEvolutionDialog)
+
         mainLayout = QVBoxLayout()
         mainLayout.addLayout(topLayout)
-        mainLayout.addWidget(self.shinyCheckbox)
-        mainLayout.addWidget(self.savebtn)
+        shinyLayout = QHBoxLayout()
+        shinyLayout.addWidget(self.shinyCheckbox)
+        shinyLayout.addWidget(self.savebtn)
+        shinyLayout.addWidget(self.evolutionBtn)
+        mainLayout.addLayout(shinyLayout)
         mainLayout.addLayout(self.imageInfoLayout)
-        mainLayout.addWidget(self.evolutionBtn)
+        # mainLayout.addWidget(self.evolutionBtn)
         mainLayout.addWidget(self.tabs)
         mainLayout.addLayout(navLayout)
 
@@ -361,7 +364,7 @@ class PokedexWindow(QMainWindow):
         if not self.infoDisplay.toPlainText():
             QMessageBox.warning(self, "No Data", "No Pokémon info to save.")
             return
-    
+
         file_path, _ = QFileDialog.getSaveFileName(self, "Save Info", "", "Text Files (*.txt)")
         if file_path:
             try:
